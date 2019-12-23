@@ -21,8 +21,8 @@ Connect Four is a twoplayer connection game, similar to gomoku or omok in Korean
 - ```agents/dqn_agent/dqn_model.py```  Covolutional Neural Network structure of DQN
 ![DQN structure](images/dqn_structure.png)
 - ```agents/dqn_agent/dqn_agent.py```  select action using DQN model and training algorithm
-- ```agents/dqn_agent/model/model1_100000.pt```  pre-trained pytorch model for DQN - player 1
-- ```agents/dqn_agent/model/model2_100000.pt```  pre-trained pytorch model for DQN - player 2
+- ```agents/dqn_agent/models/model1_100000.pt```  pre-trained pytorch model for DQN - player 1
+- ```agents/dqn_agent/models/model2_100000.pt```  pre-trained pytorch model for DQN - player 2
 - ```utils/utils.py```  convert game state to (1, 2, 6, 7) sized pytorch tensor
 ![Preprocess of state to tensor](images/preprocess.png)
 - ```train.py```  play games and save game states and actions to replay memory and optimize DQN
