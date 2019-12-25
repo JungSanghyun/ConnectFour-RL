@@ -58,7 +58,7 @@ class DQNAgent(Agent):
         self.dqn.eval()
         with torch.no_grad():
             x = observation_to_tensor(state).to(device)
-            q_value = self.dqn(x).detach()[0]
+            q_value = self.dqn(x).detach()[0].cpu()
             action = torch.argmax(F.softmax(q_value, dim=0) * torch.tensor(valid_actions, dtype=torch.float)).item()
         return action
 
@@ -69,7 +69,7 @@ class DQNAgent(Agent):
         if sample > eps_threshold:
             with torch.no_grad():
                 x = observation_to_tensor(state).to(device)
-                q_value = self.dqn(x).detach()[0]
+                q_value = self.dqn(x).detach()[0].cpu()
                 action = torch.argmax(F.softmax(q_value, dim=0) * torch.tensor(valid_actions, dtype=torch.float)).item()
         else:
             valid_action = []
@@ -93,9 +93,9 @@ class DQNAgent(Agent):
         action_batch = torch.cat(batch.action)
         reward_batch = torch.cat(batch.reward)
 
-        state_action_values = self.dqn(state_batch).gather(1, action_batch)
+        state_action_values = self.dqn(state_batch.to(device)).gather(1, action_batch)
         next_state_values = torch.zeros(self.BATCH_SIZE, device=device)
-        next_state_values[non_final_mask] = self.target_dqn(non_final_next_states).max(1)[0].detach()
+        next_state_values[non_final_mask] = self.target_dqn(non_final_next_states.to(device)).max(1)[0].detach()
         expected_state_action_values = (next_state_values * self.GAMMA) + reward_batch
         loss = F.mse_loss(state_action_values, expected_state_action_values.unsqueeze(1))
 
