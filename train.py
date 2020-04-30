@@ -5,7 +5,7 @@ import torch
 from argparse import ArgumentParser
 from tqdm import tqdm
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_ROOT not in sys.path: sys.path.append(PROJECT_ROOT)
 from envs.ConnectFour import ConnectFour
 from utils.utils import observation_to_tensor
