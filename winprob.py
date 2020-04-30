@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
 import matplotlib.pyplot as plt
 from argparse import ArgumentParser
 from tqdm import tqdm
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # 프로젝트 디렉토리
+if PROJECT_ROOT not in sys.path: sys.path.append(PROJECT_ROOT)
 from envs.ConnectFour import ConnectFour
 
 from agents.random_agent import RandomAgent
