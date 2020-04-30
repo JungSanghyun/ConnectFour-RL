@@ -1,5 +1,5 @@
 # ConnectFour-RL
-KAIST 2019 Fall Semester - CS470: Introduction to Artificial Intelligence - Final Project
+KAIST 2019 Fall Semester - CS470: Introduction to Artificial Intelligence - Term Project
 
 20150184 Eunseob Kim, 20160580 Sanghyun Jung
 

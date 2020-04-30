@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 import random
 import math
 import torch
 import torch.optim as optim
 import torch.nn.functional as F
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if PROJECT_ROOT not in sys.path: sys.path.append(PROJECT_ROOT)
 from agents.agent import Agent
 from agents.dqn_agent.dqn_model import DQN
 from agents.dqn_agent.replay_memory import ReplayMemory, Transition
-
 from utils.utils import observation_to_tensor
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model_dir = 'agents/dqn_agent/models/'
+model_dir = os.path.join(PROJECT_ROOT, 'agents/dqn_agent/models/')
 
 
 class DQNAgent(Agent):
@@ -107,7 +109,7 @@ class DQNAgent(Agent):
 
     def save_model(self, player):
         save_dict = {'dqn': self.dqn.state_dict(), 'episodes_done': self.episodes_done, 'steps_done': self.steps_done}
-        torch.save(save_dict, model_dir + f'model{player}_{self.episodes_done}.pt')
+        torch.save(save_dict, os.path.join(model_dir, f'model{player}_{self.episodes_done}.pt'))
 
     def target_update(self):
         self.target_dqn.load_state_dict(self.dqn.state_dict())

@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
 import time
 from argparse import ArgumentParser
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if PROJECT_ROOT not in sys.path: sys.path.append(PROJECT_ROOT)
 from agents.random_agent import RandomAgent
 from agents.dqn_agent.dqn_agent import DQNAgent
 from agents.human_agent import HumanAgent
