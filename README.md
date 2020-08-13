@@ -20,7 +20,7 @@ This method seems to work, however, when a nonlinear function approximator such 
 ## Dependency
 
 * Python 3.7
-* ``` pip install pytorch ```
+* ``` pip install torch ```
 * ``` pip install numpy ```
 * ``` pip install matplotlib ```
 * ``` pip install tqdm ```
